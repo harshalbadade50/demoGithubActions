@@ -10,8 +10,8 @@ jobs:
       - name: set the value
         id: step_one
         run: |
-          echo "action_state=yello" >> $CUSTOM_VAR
+          echo "action_state=yellow" >> $GITHUB_ENV
 
       - name: use the value
         id: step_two
-        run: echo "Your state is ${{ env.CUSTOM_VAR }}"
+        run: echo "Your state is ${{ env.action_state }}"
