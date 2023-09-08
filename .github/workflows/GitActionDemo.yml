@@ -32,7 +32,7 @@ jobs:
       - run: echo "Hello windown build-db step"
 
   package:
-    needs: [build-db, build]
+    needs: [build-db, build-app]
     runs-on: macos-latest
     steps:
       - run: echo "Hello packaging step"
