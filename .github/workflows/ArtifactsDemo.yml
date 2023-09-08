@@ -1,0 +1,27 @@
+name: Artifacts Demo
+
+on: push
+
+jobs:
+  job1:
+    name: Upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a local file
+        run: echo "This is just a local file to be uploaded for the demo purpose of." > someFile.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: file
+          path: someFile.txt
+          retention-days: 10
+
+  job2:
+    name: Download Artifact
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: file
+      - run: cat someFile.txt
