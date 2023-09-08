@@ -1,0 +1,38 @@
+name: A Basic Github Actions workflow
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one line script
+        run: echo "Hello, running one line script"
+
+      - name: Run a multi line script
+        run: |
+          echo "This is multi line script start"
+          echo "Multi line script end"
+
+  build-api:
+    runs-on: windows-latest
+    steps:
+      - run: echo "this is standalone job"
+
+  build-db:
+    needs: build-app
+    runs-on: windows-latest
+    steps:
+      - run: echo "Hello windown build-db step"
+
+  package:
+    needs: [build-db, build]
+    runs-on: macos-latest
+    steps:
+      - run: echo "Hello packaging step"
