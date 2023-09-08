@@ -1,0 +1,24 @@
+name: Passing Values to Next steps
+
+on: workflow_dispatch
+
+jobs:
+  passing-values-bw-steps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set value using Env variables
+        run: echo "myVar=harshal" >> $GITHUB_ENV
+
+      - name: alternative method of creating variable
+        id: alternative1
+        run: |
+          echo "some task"
+          echo "::set-output name=customVar1::Germany"
+          echo "::set-output name=todayDate::$(date + '%Y-%m-%d-&H-%M')"
+
+      - name: use custom variables created
+        run: |
+          echo "Printing values..."
+          echo "Value from GIT ENV is ${{ env.myVar }}"
+          echo "Custom var1 is ${{ steps.alternative1.outputs.customVar1 }}"
+          echo "Custom date is is ${{ steps.alternative1.outputs.todayDate }}"
