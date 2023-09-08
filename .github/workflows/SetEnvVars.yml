@@ -1,4 +1,4 @@
-name: Set Env Vars Demo
+name: Set Env Vars on fly Demo
 
 on: workflow_dispatch
 
