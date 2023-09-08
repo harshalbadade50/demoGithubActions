@@ -1,0 +1,17 @@
+name: Set Env Vars Demo
+
+on: workflow_dispatch
+
+jobs:
+  setEnvVar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: set the value
+        id: step_one
+        run: |
+          echo "action_state=yello" >> $CUSTOM_VAR
+
+      - name: use the value
+        id: step_two
+        run: echo "Your state is ${{ env.CUSTOM_VAR }}"
