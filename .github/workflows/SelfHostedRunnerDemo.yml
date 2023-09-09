@@ -1,0 +1,14 @@
+name: Self Hosted Runner Demo
+
+on: workflow_dispatch
+
+jobs:
+  self-hosted-runner:
+    runs-on: [self-hosted, Linux, X64, fordemo]
+    steps:
+      - name: run-me-inside-self-hosted-runner
+        run: |
+          echo "Howdy!! I am running inside self hosted Runners"
+
+      - name: sleep-for-20-secs
+        run: sleep 20
